@@ -1,4 +1,6 @@
-# Scripture Lib
+# @jakeave/scripture-ref
+
+[![JSR @jakeave/scripture-ref](https://jsr.io/badges/@jakeave)](https://jsr.io/@jakeave/scripture-ref)
 
 Fast scripture functions based on the publicly available volumes from the canon
 of the Church of Jesus Christ of Latter-day Saints.
@@ -38,6 +40,8 @@ substring is contained the `match` field. Leveraging the "volume" or "books"
 options greatly enhances the efficiency.
 
 ```typescript
+import { findRef } from "@jakeave/scripture-ref/server.ts";
+
 const ref0 = findRef("I am not ashamed", { maxResults: 1 });
 
 /*
@@ -90,6 +94,8 @@ Given a reference, returns the content as a plain string. Will join all defined
 verses or return full chapter.
 
 ```typescript
+import { getContent } from "@jakeave/scripture-ref/server.ts";
+
 const ref = {
   abbr: "John 1:1",
   book: { name: "John", abbr: "John" },
@@ -111,6 +117,8 @@ Given a fuzzy string, parses it into a `Reference`. Includes the text in the
 `content` field.
 
 ```typescript
+import { parseRef } from "@jakeave/scripture-ref/server.ts";
+
 const ref0 = parseRef("1 nephi 3:7");
 
 /*
@@ -155,3 +163,7 @@ const ref1 = parseRef("duet 12:32");
 
 The same as [parseRef server function](#parserefinput-string-reference) but does
 NOT include the content.
+
+```typescript
+import { parseRef } from "@jakeave/scripture-ref/client.ts";
+```

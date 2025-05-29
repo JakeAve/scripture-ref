@@ -1,3 +1,8 @@
+/**
+ * Types
+ * @module
+ */
+
 import type contents from "./data/contents.ts";
 
 /**

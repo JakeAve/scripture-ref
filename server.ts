@@ -1,3 +1,8 @@
+/**
+ * Scripture reference functions. Contains ~7 megabytes of scripture contents.
+ * @module
+ */
+
 import { findRef } from "./lib/findRef.ts";
 import { getContent } from "./lib/getContent.ts";
 import { parseRef as parseRefWOutContent } from "./lib/parseRef.ts";
