@@ -1,7 +1,7 @@
 {
   "name": "@jakeave/scripture-ref",
   "description": "Library for finding and formatting scripture references from the canon of the Church of Jesus Christ of Latter-day Saints",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "exports": {
     "./client": "./client.ts",
