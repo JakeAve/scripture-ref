@@ -1,0 +1,50 @@
+#!/bin/bash
+
+LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+
+if [[ "$LAST_COMMIT_MESSAGE" != *"Update version"* ]]; then
+  echo "Automated commit message not found. Updating..."
+    newVersion=$(deno task version)
+    if [ $? -ne 0 ]; then
+        echo "Version update failed. Please check the issue and try again."
+        exit 1
+    fi
+
+    git add ./deno.json
+    if [ $? -ne 0 ]; then
+        echo "Failed to stage updated files. Please check the issue and try again."
+        exit 1
+    fi
+
+    git commit -m "Update version to ${newVersion}"
+    if [ $? -ne 0 ]; then
+        echo "Failed to create a commit. Please check the issue and try again."
+        exit 1
+    fi
+    
+    echo "Updated to ${newVersion}. Push again."
+    exit 1
+fi
+
+deno fmt --check
+
+if [ $? -ne 0 ]; then
+    echo "Formatting failed. Please fix the issues and try again."
+    exit 1
+fi
+
+deno lint
+
+if [ $? -ne 0 ]; then
+    echo "Linting failed. Please fix the issues and try again."
+    exit 1
+fi
+
+deno test --no-check
+
+if [ $? -ne 0 ]; then
+    echo "Tests failed. Please fix the issues and try again."
+    exit 1
+fi
+
+exit 0

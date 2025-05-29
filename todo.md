@@ -1,0 +1,4 @@
+- [ ] Improve some searching in findRef
+- [ ] parseRef "dc" input should return "D&C"
+- [ ] Multiple languages
+- [ ] Heading content and BofM Title page
