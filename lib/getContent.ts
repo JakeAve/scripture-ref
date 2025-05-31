@@ -1,4 +1,4 @@
-import contents from "../data/contents.ts";
+import defaultContents from "../data/contents.ts";
 import type { BookName, Reference } from "../types.ts";
 
 /**
@@ -9,13 +9,15 @@ import type { BookName, Reference } from "../types.ts";
  * @param {BookRef} reference.book - The book of scripture being accessed.
  * @param {number} [reference.chapter] - The chapter number (optional).
  * @param {VerseRange} reference.verses - The range of verses to retrieve.
+ *  @param {Object} [options] - Optional configurations.
+ * @param {Record<string, string[][]>} [options.contents=defaultContents] - The content mapping of scripture texts. By default includes everything.
  * @returns {string | undefined} - The extracted scripture content, or undefined if not found.
  */
-export function getContent({
-  book,
-  chapter,
-  verses,
-}: Reference): string | undefined {
+export function getContent(
+  { book, chapter, verses }: Reference,
+  { contents = defaultContents }: { contents?: Record<string, string[][]> } =
+    {},
+): string | undefined {
   if (!chapter) {
     return undefined;
   }

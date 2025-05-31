@@ -36,7 +36,7 @@ field.
 ### `findRef(input: string, options): ReferenceMatch[]`
 
 Given an input string, finds a list of `ReferenceMatch` objects. The matched
-substring is contained the `match` field. Leveraging the "volume" or "books"
+substring is contained the `match` field. Leveraging the "volumes" or "books"
 options greatly enhances the efficiency.
 
 ```typescript
@@ -65,7 +65,7 @@ const ref0 = findRef("I am not ashamed", { maxResults: 1 });
 
 const ref1 = findRef("art thou greater than he?", {
   maxResults: 1,
-  volume: "dc",
+  volumes: ["dc", "bom"],
 });
 
 /*

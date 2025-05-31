@@ -272,6 +272,158 @@ Deno.test("Setting a volume will update results", () => {
   ]);
 });
 
+Deno.test("Setting volumes will update results", () => {
+  const maxResults = 1;
+  const options = { maxResults };
+
+  const ref0 = findRef("in the beginning was the word", {
+    ...options,
+    volumes: ["ot"],
+  });
+
+  assertEquals(ref0, [
+    {
+      abbr: "Lam. 2:19",
+      book: {
+        name: "Lamentations",
+        abbr: "Lam.",
+      },
+      api: "/lam/2/19",
+      chapter: 2,
+      link:
+        "https://www.churchofjesuschrist.org/study/scriptures/ot/lam/2?lang=eng&id=p19#p19",
+      reference: "Lamentations 2:19",
+      verses: [19],
+      content:
+        "Arise, cry out in the night: in the beginning of the watches pour out thine heart like water before the face of the Lord: lift up thy hands toward him for the life of thy young children, that faint for hunger in the top of every street.",
+      match: "IN THE BEGINNING ",
+    },
+  ]);
+
+  const ref1 = findRef("by small and simple things", {
+    ...options,
+    volumes: ["nt"],
+  });
+
+  assertEquals(ref1, [
+    {
+      abbr: "Col. 1:16",
+      book: {
+        name: "Colossians",
+        abbr: "Col.",
+      },
+      api: "/col/1/16",
+      chapter: 1,
+      link:
+        "https://www.churchofjesuschrist.org/study/scriptures/nt/col/1?lang=eng&id=p16#p16",
+      reference: "Colossians 1:16",
+      verses: [16],
+      content:
+        "For by him were all things created, that are in heaven, and that are in earth, visible and invisible, whether they be thrones, or dominions, or principalities, or powers: all things were created by him, and for him:",
+      match: " THINGS",
+    },
+  ]);
+
+  const ref2 = findRef("choose you this day who you will serve", {
+    ...options,
+    volumes: ["bom"],
+  });
+
+  assertEquals(ref2, [
+    {
+      abbr: "Mosiah 2:9",
+      book: {
+        name: "Mosiah",
+        abbr: "Mosiah",
+      },
+      api: "/mosiah/2/9",
+      chapter: 2,
+      link:
+        "https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/2?lang=eng&id=p9#p9",
+      reference: "Mosiah 2:9",
+      verses: [9],
+      content:
+        "And these are the words which he spake and caused to be written, saying: My brethren, all ye that have assembled yourselves together, you that can hear my words which I shall speak unto you this day; for I have not commanded you to come up hither to trifle with the words which I shall speak, but that you should hearken unto me, and open your ears that ye may hear, and your hearts that ye may understand, and your minds that the mysteries of God may be unfolded to your view.",
+      match: " YOU THIS DAY ",
+    },
+  ]);
+
+  const ref3 = findRef(
+    "I would exhort you that ye would ask God, the Eternal Father",
+    {
+      ...options,
+      volumes: ["dc"],
+    },
+  );
+
+  assertEquals(ref3, [
+    {
+      abbr: "D&C 128:23",
+      book: {
+        name: "Doctrine and Covenants",
+        abbr: "D&C",
+      },
+      api: "/dc/128/23",
+      chapter: 128,
+      link:
+        "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/128?lang=eng&id=p23#p23",
+      reference: "Doctrine and Covenants 128:23",
+      verses: [23],
+      content:
+        "Let the mountains shout for joy, and all ye valleys cry aloud; and all ye seas and dry lands tell the wonders of your Eternal King! And ye rivers, and brooks, and rills, flow down with gladness. Let the woods and all the trees of the field praise the Lord; and ye solid rocks weep for joy! And let the sun, moon, and the morning stars sing together, and let all the sons of God shout for joy! And let the eternal creations declare his name forever and ever! And again I say, how glorious is the voice we hear from heaven, proclaiming in our ears, glory, and salvation, and honor, and immortality, and eternal life; kingdoms, principalities, and powers!",
+      match: " THE ETERNAL ",
+    },
+  ]);
+
+  const ref4 = findRef(
+    "this is the testimony, last of all, which we give of him: That he lives!",
+    {
+      ...options,
+      volumes: ["pgp"],
+    },
+  );
+
+  assertEquals(ref4, [
+    {
+      abbr: "Moses 7:62",
+      book: {
+        name: "Moses",
+        abbr: "Moses",
+      },
+      api: "/moses/7/62",
+      chapter: 7,
+      link:
+        "https://www.churchofjesuschrist.org/study/scriptures/pgp/moses/7?lang=eng&id=p62#p62",
+      reference: "Moses 7:62",
+      verses: [62],
+      content:
+        "And righteousness will I send down out of heaven; and truth will I send forth out of the earth, to bear testimony of mine Only Begotten; his resurrection from the dead; yea, and also the resurrection of all men; and righteousness and truth will I cause to sweep the earth as with a flood, to gather out mine elect from the four quarters of the earth, unto a place which I shall prepare, an Holy City, that my people may gird up their loins, and be looking forth for the time of my coming; for there shall be my tabernacle, and it shall be called Zion, a New Jerusalem.",
+      match: " TESTIMONY ",
+    },
+  ]);
+
+  const ref5 = findRef("in the beginning was the word", {
+    ...options,
+    volumes: ["ot", "nt"],
+  });
+
+  assertEquals(ref5, [
+    {
+      abbr: "John 1:1",
+      api: "/john/1/1",
+      book: { name: "John", abbr: "John" },
+      chapter: 1,
+      link:
+        "https://www.churchofjesuschrist.org/study/scriptures/nt/john/1?lang=eng&id=p1#p1",
+      reference: "John 1:1",
+      verses: [1],
+      content:
+        "In the beginning was the Word, and the Word was with God, and the Word was God.",
+      match: "IN THE BEGINNING WAS THE WORD",
+    },
+  ]);
+});
+
 Deno.test("Setting a book will limit results", () => {
   for (const book in contents) {
     const results = findRef("And it came to pass", {

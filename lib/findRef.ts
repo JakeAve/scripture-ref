@@ -1,5 +1,5 @@
 import { distance } from "fastest-levenshtein";
-import contents, * as volumes from "../data/contents.ts";
+import contents from "../data/contents.ts";
 import bookRefs from "../data/books.ts";
 import { formatRef } from "./formatRef.ts";
 import type { Book, BookName, ReferenceMatch } from "../types.ts";
@@ -27,6 +27,7 @@ interface Result {
  * @param {number} [opts.minLevDist=0.9] - Minimum Levenshtein distance for matches (default: 0.9).
  * @param {number} [opts.minSubstr=5] - Minimum substring length required for matches (default: 5).
  * @param {"ot" | "nt" | "bom" | "dc" | "pgp"} [opts.volume] - Specifies the volume to search within.
+ * @param {("ot" | "nt" | "bom" | "dc" | "pgp")[]} [opts.volumes] - Specifies an array of volumes to search within.
  * @returns {ReferenceMatch[]} - An array of reference matches based on the input criteria.
  */
 export function findRef(
@@ -37,11 +38,14 @@ export function findRef(
     minLevDist?: number;
     minSubstr?: number;
     volume?: "ot" | "nt" | "bom" | "dc" | "pgp";
+    volumes?: ("ot" | "nt" | "bom" | "dc" | "pgp")[];
+    contents?: Record<string, string[][]>;
   } = {},
 ): ReferenceMatch[] {
   const {
     volume,
-    books,
+    volumes,
+    books = [],
     maxResults = 5,
     minLevDist = 0.9,
     minSubstr = 5,
@@ -54,16 +58,20 @@ export function findRef(
   let data: Partial<typeof contents> = {};
 
   if (volume) {
-    data = volumes[volume];
+    books?.push(...getBooks([volume]));
   }
 
-  if (books) {
+  if (volumes?.length) {
+    books?.push(...getBooks(volumes));
+  }
+
+  if (books?.length) {
     for (const b of books) {
       data[b] = contents[b];
     }
   }
 
-  if (!volume && !books) {
+  if (!books?.length) {
     data = contents;
   }
 
@@ -156,4 +164,116 @@ function longestCommonSubstring(input: string, verse: string) {
 
 function normalizeString(str: string): string {
   return str.replace(/\s+/g, " ").replace(/\p{P}/gu, "").toUpperCase();
+}
+
+function getBooks(volumes: ("ot" | "nt" | "bom" | "dc" | "pgp")[]) {
+  const books: BookName[] = [];
+
+  if (volumes.includes("ot")) {
+    books.push(
+      "Genesis",
+      "Exodus",
+      "Leviticus",
+      "Numbers",
+      "Deuteronomy",
+      "Joshua",
+      "Judges",
+      "Ruth",
+      "1 Samuel",
+      "2 Samuel",
+      "1 Kings",
+      "2 Kings",
+      "1 Chronicles",
+      "2 Chronicles",
+      "Ezra",
+      "Nehemiah",
+      "Esther",
+      "Job",
+      "Psalms",
+      "Proverbs",
+      "Ecclesiastes",
+      "Song of Solomon",
+      "Isaiah",
+      "Jeremiah",
+      "Lamentations",
+      "Ezekiel",
+      "Daniel",
+      "Hosea",
+      "Joel",
+      "Amos",
+      "Obadiah",
+      "Jonah",
+      "Micah",
+      "Nahum",
+      "Habakkuk",
+      "Zephaniah",
+      "Haggai",
+      "Zechariah",
+      "Malachi",
+    );
+  }
+  if (volumes.includes("nt")) {
+    books.push(
+      "Matthew",
+      "Mark",
+      "Luke",
+      "John",
+      "Acts",
+      "Romans",
+      "1 Corinthians",
+      "2 Corinthians",
+      "Galatians",
+      "Ephesians",
+      "Philippians",
+      "Colossians",
+      "1 Thessalonians",
+      "2 Thessalonians",
+      "1 Timothy",
+      "2 Timothy",
+      "Titus",
+      "Philemon",
+      "Hebrews",
+      "James",
+      "1 Peter",
+      "2 Peter",
+      "1 John",
+      "2 John",
+      "3 John",
+      "Jude",
+      "Revelation",
+    );
+  }
+  if (volumes.includes("bom")) {
+    books.push(
+      "1 Nephi",
+      "2 Nephi",
+      "Jacob",
+      "Enos",
+      "Jarom",
+      "Omni",
+      "Words of Mormon",
+      "Mosiah",
+      "Alma",
+      "Helaman",
+      "3 Nephi",
+      "4 Nephi",
+      "Mormon",
+      "Ether",
+      "Moroni",
+    );
+  }
+  if (volumes.includes("dc")) {
+    books.push("Doctrine and Covenants");
+  }
+  if (volumes.includes("pgp")) {
+    books.push(
+      "Moses",
+      "Abraham",
+      "Joseph Smith—Matthew",
+      "Joseph Smith—History",
+      "Articles of Faith",
+    );
+  }
+
+  return books;
 }

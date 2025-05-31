@@ -5,6 +5,7 @@
 
 import { findRef } from "./lib/findRef.ts";
 import { getContent } from "./lib/getContent.ts";
+import contents from "./data/contents.ts";
 import { parseRef as parseRefWOutContent } from "./lib/parseRef.ts";
 import type { Reference } from "./types.ts";
 
@@ -38,4 +39,4 @@ function parseRef(input: string): Reference {
   return { ...ref, content };
 }
 
-export { findRef, getContent, parseRef };
+export { contents, findRef, getContent, parseRef };
