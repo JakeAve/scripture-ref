@@ -8,6 +8,7 @@ import { getContent } from "./lib/getContent.ts";
 import contents from "./data/contents.ts";
 import { parseRef as parseRefWOutContent } from "./lib/parseRef.ts";
 import type { Reference } from "./types.ts";
+import books from "./data/books.ts";
 
 /**
  * Server version includes content
@@ -39,4 +40,4 @@ function parseRef(input: string): Reference {
   return { ...ref, content };
 }
 
-export { contents, findRef, getContent, parseRef };
+export { books, contents, findRef, getContent, parseRef };
