@@ -1,3 +1,4 @@
+import defaultContents from "../data/contents.ts";
 import type { BookName } from "../types.ts";
 import { findRef } from "./findRef.ts";
 
@@ -10,8 +11,17 @@ const passages = [
 ];
 
 for (const passage of passages.slice(0, 1)) {
-  Deno.bench(`Baseline search ${passage.slice(0, 10)}...`, () => {
-    findRef(passage);
+  const label = passage.slice(0, 10) + "...";
+  Deno.bench(
+    `Default find ${label}`,
+    { group: "contents", baseline: true },
+    () => {
+      findRef(passage);
+    },
+  );
+
+  Deno.bench(`Default find ${label}`, { group: "contents" }, () => {
+    findRef(passage, { contents: defaultContents });
   });
 }
 

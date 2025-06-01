@@ -457,3 +457,15 @@ Deno.test("Can do multiple books", () => {
   assertGreater(bookCounts.get("Genesis"), 0);
   assertGreater(bookCounts.get("John"), 0);
 });
+
+Deno.test("Not real book name is just ignored", () => {
+  const results = findRef("in the beginning", {
+    books: ["Genesis", "Jon" as BookName],
+  });
+
+  const books = results.map(({ book: { name } }) => name);
+
+  books.forEach((b) => {
+    assertEquals(b, "Genesis");
+  });
+});
