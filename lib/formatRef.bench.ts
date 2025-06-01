@@ -27,7 +27,13 @@ import type { Book } from "../types.ts";
 
 for (const ref of references) {
   const parsedRef = parseRef(ref);
-  const book = books.find((b) => b.name === parsedRef.book.name) as Book;
+
+  const key = parsedRef.api ? parsedRef.api.match(/\/(.*?)\//)?.[1] : null;
+
+  if (!key) continue;
+
+  const book = books[key as keyof typeof books] as Book;
+
   if (!book) continue;
 
   Deno.bench(`Time to format ${ref}`, () => {

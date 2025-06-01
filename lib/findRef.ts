@@ -122,7 +122,10 @@ export function findRef(
   const results = arr.slice(0, maxResults);
 
   return results.map(({ bookName, chapter, content, match, verse }) => {
-    const book = bookRefs.find((b) => b.name === bookName) as Book;
+    // TODO: This could be done better now by looking at bookRefs object directly instead of looping
+    const book = Object.values(bookRefs).find(
+      (b) => b.name === bookName,
+    ) as Book;
     const verses = [verse];
 
     const reference = formatRef({

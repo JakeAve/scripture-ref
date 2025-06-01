@@ -1,15 +1,15 @@
-export default [
-  {
+export default {
+  "OT Title Page": {
     name: "Old Testament Title Page",
     path: "/study/scriptures/ot/title-page",
     abbr: "OT Title Page",
   },
-  {
+  "OT Dedication": {
     name: "Epistle Dedicatory",
     path: "/study/scriptures/ot/dedication",
     abbr: "OT Dedication",
   },
-  {
+  gen: {
     name: "Genesis",
     path: "/study/scriptures/ot/gen",
     abbr: "Gen.",
@@ -67,7 +67,7 @@ export default [
     ],
     api: "/gen",
   },
-  {
+  ex: {
     name: "Exodus",
     path: "/study/scriptures/ot/ex",
     abbr: "Ex.",
@@ -115,7 +115,7 @@ export default [
     ],
     api: "/ex",
   },
-  {
+  lev: {
     name: "Leviticus",
     path: "/study/scriptures/ot/lev",
     abbr: "Lev.",
@@ -150,7 +150,7 @@ export default [
     ],
     api: "/lev",
   },
-  {
+  num: {
     name: "Numbers",
     path: "/study/scriptures/ot/num",
     abbr: "Num.",
@@ -194,7 +194,7 @@ export default [
     ],
     api: "/num",
   },
-  {
+  deut: {
     name: "Deuteronomy",
     path: "/study/scriptures/ot/deut",
     abbr: "Deut.",
@@ -236,7 +236,7 @@ export default [
     ],
     api: "/deut",
   },
-  {
+  josh: {
     name: "Joshua",
     path: "/study/scriptures/ot/josh",
     abbr: "Josh.",
@@ -268,7 +268,7 @@ export default [
     ],
     api: "/josh",
   },
-  {
+  judg: {
     name: "Judges",
     path: "/study/scriptures/ot/judg",
     abbr: "Judg.",
@@ -297,14 +297,14 @@ export default [
     ],
     api: "/judg",
   },
-  {
+  ruth: {
     name: "Ruth",
     path: "/study/scriptures/ot/ruth",
     abbr: "Ruth",
     chapters: [22, 23, 18, 22],
     api: "/ruth",
   },
-  {
+  "1-sam": {
     name: "1 Samuel",
     path: "/study/scriptures/ot/1-sam",
     abbr: "1 Sam.",
@@ -343,7 +343,7 @@ export default [
     ],
     api: "/1-sam",
   },
-  {
+  "2-sam": {
     name: "2 Samuel",
     path: "/study/scriptures/ot/2-sam",
     abbr: "2 Sam.",
@@ -375,7 +375,7 @@ export default [
     ],
     api: "/2-sam",
   },
-  {
+  "1-kgs": {
     name: "1 Kings",
     path: "/study/scriptures/ot/1-kgs",
     abbr: "1 Kgs.",
@@ -405,7 +405,7 @@ export default [
     ],
     api: "/1-kgs",
   },
-  {
+  "2-kgs": {
     name: "2 Kings",
     path: "/study/scriptures/ot/2-kgs",
     abbr: "2 Kgs.",
@@ -438,7 +438,7 @@ export default [
     ],
     api: "/2-kgs",
   },
-  {
+  "1-chr": {
     name: "1 Chronicles",
     path: "/study/scriptures/ot/1-chr",
     abbr: "1 Chr.",
@@ -475,7 +475,7 @@ export default [
     ],
     api: "/1-chr",
   },
-  {
+  "2-chr": {
     name: "2 Chronicles",
     path: "/study/scriptures/ot/2-chr",
     abbr: "2 Chr.",
@@ -519,28 +519,28 @@ export default [
     ],
     api: "/2-chr",
   },
-  {
+  ezra: {
     name: "Ezra",
     path: "/study/scriptures/ot/ezra",
     abbr: "Ezra",
     chapters: [11, 70, 13, 24, 17, 22, 28, 36, 15, 44],
     api: "/ezra",
   },
-  {
+  neh: {
     name: "Nehemiah",
     path: "/study/scriptures/ot/neh",
     abbr: "Neh.",
     chapters: [11, 20, 32, 23, 19, 19, 73, 18, 38, 39, 36, 47, 31],
     api: "/neh",
   },
-  {
+  esth: {
     name: "Esther",
     path: "/study/scriptures/ot/esth",
     abbr: "Esth.",
     chapters: [22, 23, 15, 17, 14, 14, 10, 17, 32, 3],
     api: "/esth",
   },
-  {
+  job: {
     name: "Job",
     path: "/study/scriptures/ot/job",
     abbr: "Job",
@@ -590,7 +590,7 @@ export default [
     ],
     api: "/job",
   },
-  {
+  ps: {
     name: "Psalms",
     path: "/study/scriptures/ot/ps",
     abbr: "Ps.",
@@ -748,7 +748,7 @@ export default [
     ],
     api: "/ps",
   },
-  {
+  prov: {
     name: "Proverbs",
     path: "/study/scriptures/ot/prov",
     abbr: "Prov.",
@@ -787,21 +787,21 @@ export default [
     ],
     api: "/prov",
   },
-  {
+  eccl: {
     name: "Ecclesiastes",
     path: "/study/scriptures/ot/eccl",
     abbr: "Eccl.",
     chapters: [18, 26, 22, 16, 20, 12, 29, 17, 18, 20, 10, 14],
     api: "/eccl",
   },
-  {
+  song: {
     name: "Song of Solomon",
     path: "/study/scriptures/ot/song",
     abbr: "Song",
     chapters: [17, 17, 11, 16, 16, 13, 13, 14],
     api: "/song",
   },
-  {
+  isa: {
     name: "Isaiah",
     path: "/study/scriptures/ot/isa",
     abbr: "Isa.",
@@ -875,7 +875,7 @@ export default [
     ],
     api: "/isa",
   },
-  {
+  jer: {
     name: "Jeremiah",
     path: "/study/scriptures/ot/jer",
     abbr: "Jer.",
@@ -935,14 +935,14 @@ export default [
     ],
     api: "/jer",
   },
-  {
+  lam: {
     name: "Lamentations",
     path: "/study/scriptures/ot/lam",
     abbr: "Lam.",
     chapters: [22, 22, 66, 22, 22],
     api: "/lam",
   },
-  {
+  ezek: {
     name: "Ezekiel",
     path: "/study/scriptures/ot/ezek",
     abbr: "Ezek.",
@@ -998,103 +998,103 @@ export default [
     ],
     api: "/ezek",
   },
-  {
+  dan: {
     name: "Daniel",
     path: "/study/scriptures/ot/dan",
     abbr: "Dan.",
     chapters: [21, 49, 30, 37, 31, 28, 28, 27, 27, 21, 45, 13],
     api: "/dan",
   },
-  {
+  hosea: {
     name: "Hosea",
     path: "/study/scriptures/ot/hosea",
     abbr: "Hos.",
     chapters: [11, 23, 5, 19, 15, 11, 16, 14, 17, 15, 12, 14, 16, 9],
     api: "/hosea",
   },
-  {
+  joel: {
     name: "Joel",
     path: "/study/scriptures/ot/joel",
     abbr: "Joel",
     chapters: [20, 32, 21],
     api: "/joel",
   },
-  {
+  amos: {
     name: "Amos",
     path: "/study/scriptures/ot/amos",
     abbr: "Amos",
     chapters: [15, 16, 15, 13, 27, 14, 17, 14, 15],
     api: "/amos",
   },
-  {
+  obad: {
     name: "Obadiah",
     path: "/study/scriptures/ot/obad",
     abbr: "Obad.",
     chapters: [21],
     api: "/obad",
   },
-  {
+  jonah: {
     name: "Jonah",
     path: "/study/scriptures/ot/jonah",
     abbr: "Jonah",
     chapters: [17, 10, 10, 11],
     api: "/jonah",
   },
-  {
+  micah: {
     name: "Micah",
     path: "/study/scriptures/ot/micah",
     abbr: "Mic.",
     chapters: [16, 13, 12, 13, 15, 16, 20],
     api: "/micah",
   },
-  {
+  nahum: {
     name: "Nahum",
     path: "/study/scriptures/ot/nahum",
     abbr: "Nah.",
     chapters: [15, 13, 19],
     api: "/nahum",
   },
-  {
+  hab: {
     name: "Habakkuk",
     path: "/study/scriptures/ot/hab",
     abbr: "Hab.",
     chapters: [17, 20, 19],
     api: "/hab",
   },
-  {
+  zeph: {
     name: "Zephaniah",
     path: "/study/scriptures/ot/zeph",
     abbr: "Zeph.",
     chapters: [18, 15, 20],
     api: "/zeph",
   },
-  {
+  hag: {
     name: "Haggai",
     path: "/study/scriptures/ot/hag",
     abbr: "Hag.",
     chapters: [15, 23],
     api: "/hag",
   },
-  {
+  zech: {
     name: "Zechariah",
     path: "/study/scriptures/ot/zech",
     abbr: "Zech.",
     chapters: [21, 13, 10, 14, 11, 15, 14, 23, 17, 12, 17, 14, 9, 21],
     api: "/zech",
   },
-  {
+  mal: {
     name: "Malachi",
     path: "/study/scriptures/ot/mal",
     abbr: "Mal.",
     chapters: [14, 17, 18, 6],
     api: "/mal",
   },
-  {
+  "NT Title Page": {
     name: "New Testament Title Page",
     path: "/study/scriptures/nt/title-page",
     abbr: "NT Title Page",
   },
-  {
+  matt: {
     name: "Matthew",
     path: "/study/scriptures/nt/matt",
     abbr: "Matt.",
@@ -1130,14 +1130,14 @@ export default [
     ],
     api: "/matt",
   },
-  {
+  mark: {
     name: "Mark",
     path: "/study/scriptures/nt/mark",
     abbr: "Mark",
     chapters: [45, 28, 35, 41, 43, 56, 37, 38, 50, 52, 33, 44, 37, 72, 47, 20],
     api: "/mark",
   },
-  {
+  luke: {
     name: "Luke",
     path: "/study/scriptures/nt/luke",
     abbr: "Luke",
@@ -1169,7 +1169,7 @@ export default [
     ],
     api: "/luke",
   },
-  {
+  john: {
     name: "John",
     path: "/study/scriptures/nt/john",
     abbr: "John",
@@ -1198,7 +1198,7 @@ export default [
     ],
     api: "/john",
   },
-  {
+  acts: {
     name: "Acts",
     path: "/study/scriptures/nt/acts",
     abbr: "Acts",
@@ -1234,154 +1234,154 @@ export default [
     ],
     api: "/acts",
   },
-  {
+  rom: {
     name: "Romans",
     path: "/study/scriptures/nt/rom",
     abbr: "Rom.",
     chapters: [32, 29, 31, 25, 21, 23, 25, 39, 33, 21, 36, 21, 14, 23, 33, 27],
     api: "/rom",
   },
-  {
+  "1-cor": {
     name: "1 Corinthians",
     path: "/study/scriptures/nt/1-cor",
     abbr: "1 Cor.",
     chapters: [31, 16, 23, 21, 13, 20, 40, 13, 27, 33, 34, 31, 13, 40, 58, 24],
     api: "/1-cor",
   },
-  {
+  "2-cor": {
     name: "2 Corinthians",
     path: "/study/scriptures/nt/2-cor",
     abbr: "2 Cor.",
     chapters: [24, 17, 18, 18, 21, 18, 16, 24, 15, 18, 33, 21, 14],
     api: "/2-cor",
   },
-  {
+  gal: {
     name: "Galatians",
     path: "/study/scriptures/nt/gal",
     abbr: "Gal.",
     chapters: [24, 21, 29, 31, 26, 18],
     api: "/gal",
   },
-  {
+  eph: {
     name: "Ephesians",
     path: "/study/scriptures/nt/eph",
     abbr: "Eph.",
     chapters: [23, 22, 21, 32, 33, 24],
     api: "/eph",
   },
-  {
+  philip: {
     name: "Philippians",
     path: "/study/scriptures/nt/philip",
     abbr: "Phil.",
     chapters: [30, 30, 21, 23],
     api: "/philip",
   },
-  {
+  col: {
     name: "Colossians",
     path: "/study/scriptures/nt/col",
     abbr: "Col.",
     chapters: [29, 23, 25, 18],
     api: "/col",
   },
-  {
+  "1-thes": {
     name: "1 Thessalonians",
     path: "/study/scriptures/nt/1-thes",
     abbr: "1 Thess.",
     chapters: [10, 20, 13, 18, 28],
     api: "/1-thes",
   },
-  {
+  "2-thes": {
     name: "2 Thessalonians",
     path: "/study/scriptures/nt/2-thes",
     abbr: "2 Thess.",
     chapters: [12, 17, 18],
     api: "/2-thes",
   },
-  {
+  "1-tim": {
     name: "1 Timothy",
     path: "/study/scriptures/nt/1-tim",
     abbr: "1 Tim.",
     chapters: [20, 15, 16, 16, 25, 21],
     api: "/1-tim",
   },
-  {
+  "2-tim": {
     name: "2 Timothy",
     path: "/study/scriptures/nt/2-tim",
     abbr: "2 Tim.",
     chapters: [18, 26, 17, 22],
     api: "/2-tim",
   },
-  {
+  titus: {
     name: "Titus",
     path: "/study/scriptures/nt/titus",
     abbr: "Titus",
     chapters: [16, 15, 15],
     api: "/titus",
   },
-  {
+  philem: {
     name: "Philemon",
     path: "/study/scriptures/nt/philem",
     abbr: "Philem.",
     chapters: [25],
     api: "/philem",
   },
-  {
+  heb: {
     name: "Hebrews",
     path: "/study/scriptures/nt/heb",
     abbr: "Heb.",
     chapters: [14, 18, 19, 16, 14, 20, 28, 13, 28, 39, 40, 29, 25],
     api: "/heb",
   },
-  {
+  james: {
     name: "James",
     path: "/study/scriptures/nt/james",
     abbr: "James",
     chapters: [27, 26, 18, 17, 20],
     api: "/james",
   },
-  {
+  "1-pet": {
     name: "1 Peter",
     path: "/study/scriptures/nt/1-pet",
     abbr: "1 Pet.",
     chapters: [25, 25, 22, 19, 14],
     api: "/1-pet",
   },
-  {
+  "2-pet": {
     name: "2 Peter",
     path: "/study/scriptures/nt/2-pet",
     abbr: "2 Pet.",
     chapters: [21, 22, 18],
     api: "/2-pet",
   },
-  {
+  "1-jn": {
     name: "1 John",
     path: "/study/scriptures/nt/1-jn",
     abbr: "1 Jn.",
     chapters: [10, 29, 24, 21, 21],
     api: "/1-jn",
   },
-  {
+  "2-jn": {
     name: "2 John",
     path: "/study/scriptures/nt/2-jn",
     abbr: "2 Jn.",
     chapters: [13],
     api: "/2-jn",
   },
-  {
+  "3-jn": {
     name: "3 John",
     path: "/study/scriptures/nt/3-jn",
     abbr: "3 Jn.",
     chapters: [14],
     api: "/3-jn",
   },
-  {
+  jude: {
     name: "Jude",
     path: "/study/scriptures/nt/jude",
     abbr: "Jude",
     chapters: [25],
     api: "/jude",
   },
-  {
+  rev: {
     name: "Revelation",
     path: "/study/scriptures/nt/rev",
     abbr: "Rev.",
@@ -1411,42 +1411,42 @@ export default [
     ],
     api: "/rev",
   },
-  {
+  "Title Page BoM": {
     name: "Title Page of the Book of Mormon",
     path: "/study/scriptures/bofm/title-page",
     abbr: "Title Page BoM",
   },
-  {
+  "BoM Title Page": {
     name: "Book of Mormon Title Page",
     path: "/study/scriptures/bofm/bofm-title",
     abbr: "BoM Title Page",
   },
-  {
+  "BoM Intro.": {
     name: "Book of Mormon Introduction",
     path: "/study/scriptures/bofm/introduction",
     abbr: "BoM Intro.",
   },
-  {
+  "3 Witnesses": {
     name: "Testimony of Three Witnesses",
     path: "/study/scriptures/bofm/three",
     abbr: "3 Witnesses",
   },
-  {
+  "8 Witnesses": {
     name: "Testimony of Eight Witnesses",
     path: "/study/scriptures/bofm/eight",
     abbr: "8 Witnesses",
   },
-  {
+  "JS Testimony": {
     name: "Testimony of the Prophet Joseph Smith",
     path: "/study/scriptures/bofm/js",
     abbr: "JS Testimony",
   },
-  {
+  "BoM Explanation": {
     name: "Book of Mormon Explanation",
     path: "/study/scriptures/bofm/explanation",
     abbr: "BoM Explanation",
   },
-  {
+  "1-ne": {
     name: "1 Nephi",
     path: "/study/scriptures/bofm/1-ne",
     abbr: "1 Ne.",
@@ -1476,7 +1476,7 @@ export default [
     ],
     api: "/1-ne",
   },
-  {
+  "2-ne": {
     name: "2 Nephi",
     path: "/study/scriptures/bofm/2-ne",
     abbr: "2 Ne.",
@@ -1517,42 +1517,42 @@ export default [
     ],
     api: "/2-ne",
   },
-  {
+  jacob: {
     name: "Jacob",
     path: "/study/scriptures/bofm/jacob",
     abbr: "Jacob",
     chapters: [19, 35, 14, 18, 77, 13, 27],
     api: "/jacob",
   },
-  {
+  enos: {
     name: "Enos",
     path: "/study/scriptures/bofm/enos",
     abbr: "Enos",
     chapters: [27],
     api: "/enos",
   },
-  {
+  jarom: {
     name: "Jarom",
     path: "/study/scriptures/bofm/jarom/1",
     abbr: "Jarom",
     chapters: [15],
-    api: "/jarom/1",
+    api: "/jarom",
   },
-  {
+  omni: {
     name: "Omni",
     path: "/study/scriptures/bofm/omni",
     abbr: "Omni",
     chapters: [30],
     api: "/omni",
   },
-  {
+  "w-of-m": {
     name: "Words of Mormon",
     path: "/study/scriptures/bofm/w-of-m",
     abbr: "WoM",
     chapters: [18],
     api: "/w-of-m",
   },
-  {
+  mosiah: {
     name: "Mosiah",
     path: "/study/scriptures/bofm/mosiah",
     abbr: "Mosiah",
@@ -1589,7 +1589,7 @@ export default [
     ],
     api: "/mosiah",
   },
-  {
+  alma: {
     name: "Alma",
     path: "/study/scriptures/bofm/alma",
     abbr: "Alma",
@@ -1660,14 +1660,14 @@ export default [
     ],
     api: "/alma",
   },
-  {
+  hel: {
     name: "Helaman",
     path: "/study/scriptures/bofm/hel",
     abbr: "Hel.",
     chapters: [34, 14, 37, 26, 52, 41, 29, 28, 41, 19, 38, 26, 39, 31, 17, 25],
     api: "/hel",
   },
-  {
+  "3-ne": {
     name: "3 Nephi",
     path: "/study/scriptures/bofm/3-ne",
     abbr: "3 Ne.",
@@ -1705,60 +1705,60 @@ export default [
     ],
     api: "/3-ne",
   },
-  {
+  "4-ne": {
     name: "4 Nephi",
     path: "/study/scriptures/bofm/4-ne",
     abbr: "4 Ne.",
     chapters: [49],
     api: "/4-ne",
   },
-  {
+  morm: {
     name: "Mormon",
     path: "/study/scriptures/bofm/morm",
     abbr: "Morm.",
     chapters: [19, 29, 22, 23, 24, 22, 10, 41, 37],
     api: "/morm",
   },
-  {
+  ether: {
     name: "Ether",
     path: "/study/scriptures/bofm/ether",
     abbr: "Ether",
     chapters: [43, 25, 28, 19, 6, 30, 27, 26, 35, 34, 23, 41, 31, 31, 34],
     api: "/ether",
   },
-  {
+  moro: {
     name: "Moroni",
     path: "/study/scriptures/bofm/moro",
     abbr: "Moro.",
     chapters: [4, 3, 4, 3, 2, 9, 48, 30, 26, 34],
     api: "/moro",
   },
-  {
+  "BoM Pron.": {
     name: "Book of Mormon Pronunciation Guide",
     path: "/study/scriptures/bofm/pronunciation",
     abbr: "BoM Pron.",
   },
-  {
+  "BoM Ref.": {
     name: "Reference Guide to the Book of Mormon",
     path: "/study/scriptures/bofm/reference",
     abbr: "BoM Ref.",
   },
-  {
+  "D&C Title Page": {
     name: "Doctrine and Covenants Title Page",
     path: "/study/scriptures/dc-testament/title-page",
     abbr: "D&C Title Page",
   },
-  {
+  "D&C Intro.": {
     name: "Doctrine and Covenants Introduction",
     path: "/study/scriptures/dc-testament/introduction",
     abbr: "D&C Intro.",
   },
-  {
+  "D&C Chron.": {
     name: "Chronological Order of Contents",
     path: "/study/scriptures/dc-testament/chron-order",
     abbr: "D&C Chron.",
   },
-  {
+  dc: {
     name: "Doctrine and Covenants",
     path: "/study/scriptures/dc-testament/dc",
     abbr: "D&C",
@@ -1904,61 +1904,61 @@ export default [
     ],
     api: "/dc",
   },
-  {
+  "od-1": {
     name: "Official Declaration 1",
     path: "/study/scriptures/dc-testament/od",
     abbr: "O.D. 1",
     chapters: [4],
   },
-  {
+  "od-2": {
     name: "Official Declaration 2",
     path: "/study/scriptures/dc-testament/od",
     abbr: "O.D. 2",
     chapters: [3],
   },
-  {
+  "PGP Title Page": {
     name: "Title Page of the Pearl of Great Price",
     path: "/study/scriptures/pgp/title-page",
     abbr: "PGP Title Page",
   },
-  {
+  "PGP Intro.": {
     name: "Introduction to the Pearl of Great Price",
     path: "/study/scriptures/pgp/introduction",
     abbr: "PGP Intro.",
   },
-  {
+  moses: {
     name: "Moses",
     path: "/study/scriptures/pgp/moses",
     abbr: "Moses",
     chapters: [42, 31, 25, 32, 59, 68, 69, 30],
     api: "/moses",
   },
-  {
+  abr: {
     name: "Abraham",
     path: "/study/scriptures/pgp/abr",
     abbr: "Abr.",
     chapters: [31, 25, 28, 31, 21],
     api: "/abr",
   },
-  {
+  "js-m": {
     name: "Joseph Smith—Matthew",
     path: "/study/scriptures/pgp/js-m",
     abbr: "JS-M",
     chapters: [55],
     api: "/js-m",
   },
-  {
+  "js-h": {
     name: "Joseph Smith—History",
     path: "/study/scriptures/pgp/js-h",
     abbr: "JS-H",
     chapters: [82],
     api: "/js-h",
   },
-  {
+  "a-of-f": {
     name: "Articles of Faith",
     path: "/study/scriptures/pgp/a-of-f",
     abbr: "A of F",
     chapters: [13],
     api: "/a-of-f",
   },
-];
+};

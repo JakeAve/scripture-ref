@@ -87,7 +87,7 @@ export function parseRef(input: string): Reference {
  * @returns Book object containing the name, path, abbreviation, and chapters
  */
 function parseBook(bookText: string): Book {
-  const sorted = (books as Book[]).toSorted((a, b) => {
+  const sorted = (Object.values(books) as Book[]).toSorted((a, b) => {
     let scoreA = 0;
     let scoreB = 0;
 

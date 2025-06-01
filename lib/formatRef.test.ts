@@ -5,7 +5,7 @@ import type { Book, Reference } from "../types.ts";
 
 Deno.test("Puts verses in chronological order", () => {
   const ref = formatRef({
-    book: books[76] as Book,
+    book: books["1-ne"] as Book,
     chapter: 3,
     verses: [7, [1, 2], [12, 10]],
   });
@@ -26,7 +26,7 @@ Deno.test("Puts verses in chronological order", () => {
 
 Deno.test("Will set chapter to 1 when there's only one chapter", () => {
   const ref = formatRef({
-    book: books[32] as Book,
+    book: books["obad"] as Book,
   });
 
   const expected = {
@@ -45,7 +45,7 @@ Deno.test("Will set chapter to 1 when there's only one chapter", () => {
 
 Deno.test("Will link to book if no chapter or verses are provided", () => {
   const ref = formatRef({
-    book: books[45] as Book,
+    book: books["john"] as Book,
   });
 
   const expected = {
@@ -64,7 +64,7 @@ Deno.test("Will link to book if no chapter or verses are provided", () => {
 
 Deno.test("Will remove chapter if it doesn't exist", () => {
   const ref = formatRef({
-    book: books[58] as Book,
+    book: books["titus"] as Book,
     chapter: 5,
     verses: [1],
   });
@@ -85,7 +85,7 @@ Deno.test("Will remove chapter if it doesn't exist", () => {
 
 Deno.test("Will lower verses if they do not exist in the chapter", () => {
   const ref = formatRef({
-    book: books[96] as Book,
+    book: books["dc"] as Book,
     chapter: 2,
     verses: [[1, 6]],
   });
