@@ -127,7 +127,7 @@ Deno.test("Finds range of verses", () => {
   });
 });
 
-Deno.test("Finds ranges of verses", () => {
+Deno.test("Finds multiple ranges of verses", () => {
   const ref = parseRef("Ether 12:4-27, 28-30, 31");
 
   assertEquals(ref, {
@@ -253,5 +253,23 @@ Deno.test("Will use the last verse if verse numbers are too high", () => {
     abbr: "D&C 138:59-60",
     link:
       "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/138?lang=eng&id=p59-p60#p59",
+  });
+});
+
+Deno.test("Will update link when verses are outside of range", () => {
+  const ref = parseRef("2 Nephi 22:10-12");
+
+  assertEquals(ref, {
+    book: {
+      name: "2 Nephi",
+      abbr: "2 Ne.",
+    },
+    api: "/2-ne/22/6",
+    chapter: 22,
+    verses: [6],
+    reference: "2 Nephi 22:6",
+    abbr: "2 Ne. 22:6",
+    link:
+      "https://www.churchofjesuschrist.org/study/scriptures/bofm/2-ne/22?lang=eng&id=p6#p6",
   });
 });

@@ -1,5 +1,5 @@
 /**
- * Scripture reference function using minimal memory. Does not include content.
+ * Scripture reference function using minimal memory. Does not include contents.
  * @module
  */
 

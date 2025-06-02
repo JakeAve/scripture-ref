@@ -1,3 +1,6 @@
+/**
+ * Properties for different books
+ */
 export default {
   "OT Title Page": {
     name: "Old Testament Title Page",

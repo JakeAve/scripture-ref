@@ -62,15 +62,23 @@ export function formatRef({
   const vs: string[] = [];
 
   if (verses.length && chapter) {
-    for (const [idx, range] of verses.entries()) {
+    for (let [idx, range] of verses.entries()) {
       if (Array.isArray(range)) {
         for (const [idx2, verse] of range.entries()) {
           // If the verse doesn't exist, change it to show the highest verse
           if (verse > book.chapters[chapter - 1]) {
-            (verses[idx] as [number, number])[idx2] = book.chapters[
-              chapter - 1
-            ] as number;
+            const updatedVerse = book.chapters[chapter - 1] as number;
+
+            (verses[idx] as [number, number])[idx2] = updatedVerse;
+            range[idx2] = updatedVerse;
           }
+        }
+
+        if (range[0] === range[1]) {
+          ps.push(`p${range[0]}`);
+          vs.push(`${range[0]}`);
+          verses[idx] = range[0];
+          continue;
         }
 
         ps.push(`p${range[0]}-p${range[1]}`);
@@ -79,6 +87,7 @@ export function formatRef({
         // If the verse doesn't exist, change it to show the highest verse
         if (range > book.chapters[chapter - 1]) {
           verses[idx] = book.chapters[chapter - 1] as number;
+          range = book.chapters[chapter - 1] as number;
         }
 
         ps.push(`p${range}`);

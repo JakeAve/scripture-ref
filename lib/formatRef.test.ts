@@ -103,3 +103,54 @@ Deno.test("Will lower verses if they do not exist in the chapter", () => {
 
   assertEquals(ref, expected);
 });
+
+Deno.test(
+  "Will update out of range verses and filter some verse duplicates",
+  () => {
+    const ref = formatRef({
+      book: books["2-ne"] as Book,
+      chapter: 22,
+      verses: [[10, 12]],
+    });
+
+    const expected = {
+      book: {
+        name: "2 Nephi",
+        abbr: "2 Ne.",
+      },
+      api: "/2-ne/22/6",
+      chapter: 22,
+      verses: [6],
+      reference: "2 Nephi 22:6",
+      abbr: "2 Ne. 22:6",
+      link:
+        "https://www.churchofjesuschrist.org/study/scriptures/bofm/2-ne/22?lang=eng&id=p6#p6",
+    } as Reference;
+
+    assertEquals(ref, expected);
+  },
+);
+
+Deno.test("Will fix some duplicates", () => {
+  const ref = formatRef({
+    book: books["2-ne"] as Book,
+    chapter: 3,
+    verses: [[5, 5], 8],
+  });
+
+  const expected = {
+    book: {
+      name: "2 Nephi",
+      abbr: "2 Ne.",
+    },
+    api: "/2-ne/3/5/8",
+    chapter: 3,
+    verses: [5, 8],
+    reference: "2 Nephi 3:5, 8",
+    abbr: "2 Ne. 3:5, 8",
+    link:
+      "https://www.churchofjesuschrist.org/study/scriptures/bofm/2-ne/3?lang=eng&id=p5,p8#p5",
+  } as Reference;
+
+  assertEquals(ref, expected);
+});
