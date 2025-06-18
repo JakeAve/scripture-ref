@@ -469,3 +469,11 @@ Deno.test("Not real book name is just ignored", () => {
     assertEquals(b, "Genesis");
   });
 });
+
+Deno.test("maxResults null will get full array", () => {
+  const results = findRef("and it came to pass", {
+    maxResults: null,
+  });
+
+  assertEquals(results.length, 4944);
+});

@@ -34,7 +34,7 @@ export function findRef(
   rawInput: string,
   opts: {
     books?: BookName[];
-    maxResults?: number;
+    maxResults?: number | null;
     minLevDist?: number;
     minSubstr?: number;
     volume?: "ot" | "nt" | "bom" | "dc" | "pgp";
@@ -119,7 +119,7 @@ export function findRef(
     return b.score - a.score;
   });
 
-  const results = arr.slice(0, maxResults);
+  const results = arr.slice(0, maxResults === null ? undefined : maxResults);
 
   return results.map(({ bookName, chapter, content, match, verse }) => {
     // TODO: This could be done better now by looking at bookRefs object directly instead of looping
