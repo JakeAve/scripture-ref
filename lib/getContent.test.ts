@@ -31,7 +31,7 @@ Deno.test("Can get a mix of single verses and ranges", () => {
   } as Reference;
 
   const expected =
-    "And this is life eternal, that they might know thee the only true God, and Jesus Christ, whom thou hast sent. I have manifested thy name unto the men which thou gavest me out of the world: thine they were, and thou gavest them me; and they have kept thy word. I pray for them: I pray not for the world, but for them which thou hast given me; for they are thine. I pray not that thou shouldest take them out of the world, but that thou shouldest keep them from the evil. I in them, and thou in me, that they may be made perfect in one; and that the world may know that thou hast sent me, and hast loved them, as thou hast loved me.";
+    "And this is life eternal, that they might know thee the only true God, and Jesus Christ, whom thou hast sent. I have glorified thee on the earth: I have finished the work which thou gavest me to do. And now, O Father, glorify thou me with thine own self with the glory which I had with thee before the world was. I pray for them: I pray not for the world, but for them which thou hast given me; for they are thine. I pray not that thou shouldest take them out of the world, but that thou shouldest keep them from the evil. They are not of the world, even as I am not of the world. Sanctify them through thy truth: thy word is truth. As thou hast sent me into the world, even so have I also sent them into the world. And for their sakes I sanctify myself, that they also might be sanctified through the truth. Neither pray I for these alone, but for them also which shall believe on me through their word; That they all may be one; as thou, Father, art in me, and I in thee, that they also may be one in us: that the world may believe that thou hast sent me. And the glory which thou gavest me I have given them; that they may be one, even as we are one:";
 
   assertEquals(getContent(ref), expected);
 });
@@ -64,6 +64,26 @@ Deno.test("Will return undefined if getting a full book", () => {
   } as Reference;
 
   const expected = undefined;
+
+  assertEquals(getContent(ref), expected);
+});
+
+Deno.test("Check for full ranges", () => {
+  const ref = {
+    abbr: "Matt. 11:28-30",
+    api: "/matt/11/28-30",
+    book: { name: "Matthew", abbr: "Matt." },
+    chapter: 11,
+    link:
+      "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/11?lang=eng&id=p28-p30#p28",
+    reference: "Matthew 11:28-30",
+    verses: [[28, 30]],
+  } as Reference;
+
+  const expected =
+    "Come unto me, all ye that labour and are heavy laden, and I will give you rest. Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls.";
+
+  console.log(getContent(ref));
 
   assertEquals(getContent(ref), expected);
 });
