@@ -31,7 +31,7 @@ export function getContent(
 
   for (const vs of verses) {
     if (Array.isArray(vs)) {
-      for (let v = vs[0]; v < vs[1]; v++) {
+      for (let v = vs[0]; v <= vs[1]; v++) {
         content +=
           contents[book.name as BookName][(chapter as number) - 1][v - 1];
         content += " ";
