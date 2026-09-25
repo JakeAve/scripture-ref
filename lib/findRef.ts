@@ -8,6 +8,79 @@ const booksByName = new Map(
   Object.values(bookRefs).map((b) => [b.name, b as Book]),
 );
 
+interface Verse {
+  bookName: BookName;
+  chapter: number;
+  verse: number;
+  content: string;
+}
+
+// ponytail: fixed candidate cap; make it an option if recall on long inputs suffers
+const MAX_CANDIDATES = 200;
+
+let verses: Verse[] | undefined;
+let wordIndex: Map<string, Uint32Array> | undefined;
+
+/** Builds the flat verse list and word -> verse id postings once, on first search */
+function getIndex() {
+  if (verses && wordIndex) return { verses, wordIndex };
+  verses = [];
+  const postings = new Map<string, number[]>();
+  for (const bookName in contents) {
+    const book = contents[bookName as BookName];
+    for (let c = 0; c < book.length; c++) {
+      for (let v = 0; v < book[c].length; v++) {
+        const content = book[c][v];
+        const id = verses.push({
+          bookName: bookName as BookName,
+          chapter: c + 1,
+          verse: v + 1,
+          content,
+        }) - 1;
+        for (const word of new Set(normalizeString(content).split(" "))) {
+          let list = postings.get(word);
+          if (!list) postings.set(word, list = []);
+          list.push(id);
+        }
+      }
+    }
+  }
+  wordIndex = new Map();
+  for (const [word, list] of postings) {
+    wordIndex.set(word, Uint32Array.from(list));
+  }
+  return { verses, wordIndex };
+}
+
+/** Verse ids sharing words with the input, best IDF-weighted overlap first */
+function candidates(
+  input: string,
+  allowed: Set<string> | null,
+  limit: number,
+): number[] {
+  const { verses, wordIndex } = getIndex();
+  const hits = new Map<number, number>();
+  for (const word of new Set(input.split(" "))) {
+    const list = wordIndex.get(word);
+    if (!list) continue;
+    const idf = Math.log(verses.length / list.length);
+    for (const id of list) {
+      if (allowed && !allowed.has(verses[id].bookName)) continue;
+      hits.set(id, (hits.get(id) ?? 0) + idf);
+    }
+  }
+  // no word in common with anything: fall back to a full scan
+  if (!hits.size) {
+    return verses.flatMap((v, id) =>
+      allowed && !allowed.has(v.bookName) ? [] : [id]
+    );
+  }
+  return [...hits]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([id]) => id);
+}
+
 interface Result {
   bookName: string;
   chapter: number;
@@ -23,6 +96,8 @@ interface Result {
  * Finds and returns references based on the provided input string.
  * It filters and ranks matches according to optional parameters such as book selection,
  * maximum results, minimum Levenshtein distance, and substring matching.
+ * A word index is built on the first call; verses sharing words with the input are
+ * scored, so only whole-word overlaps are found.
  *
  * @param {string} rawInput - The raw string input to search for references.
  * @param {Object} [opts={}] - Optional settings to refine the reference search.
@@ -59,8 +134,6 @@ export function findRef(
   const minLev = Math.ceil(input.length * minLevDist);
   const minSub = minSubstr;
 
-  let data: Partial<typeof contents> = {};
-
   if (volume) {
     books?.push(...getBooks([volume]));
   }
@@ -69,54 +142,36 @@ export function findRef(
     books?.push(...getBooks(volumes));
   }
 
-  if (books?.length) {
-    for (const b of books) {
-      data[b] = contents[b];
+  const allowed = books?.length ? new Set<string>(books) : null;
+  const limit = maxResults === null ? Infinity : MAX_CANDIDATES;
+  const { verses } = getIndex();
+
+  for (const id of candidates(input, allowed, limit)) {
+    const { bookName, chapter, verse: verseNum, content } = verses[id];
+    const verse = normalizeString(content);
+    const d = distance(input, verse);
+    const diff = verse.length - d;
+
+    if (diff < minLev) {
+      continue;
     }
-  }
 
-  if (!books?.length) {
-    data = contents;
-  }
+    const subStr = longestCommonSubstring(input, verse);
 
-  for (const b in data) {
-    const book = data[b as BookName];
-    if (!book) continue;
-    const iLen = book.length;
-
-    for (let i = 0; i < iLen; i++) {
-      const chapter = book[i];
-      const jLen = chapter.length;
-      for (let j = 0; j < jLen; j++) {
-        const rawVerse = chapter[j];
-        const verse = normalizeString(rawVerse);
-        const d = distance(input, verse);
-        const diff = verse.length - d;
-
-        if (diff < minLev) {
-          continue;
-        }
-
-        const subStr = longestCommonSubstring(input, verse);
-
-        if (subStr.length < minSub) {
-          continue;
-        }
-
-        const result: Result = {
-          lev: diff,
-          sub: subStr.length,
-          score: diff + subStr.length,
-          match: subStr,
-          content: rawVerse,
-          bookName: b,
-          chapter: i + 1,
-          verse: j + 1,
-        };
-
-        arr.push(result);
-      }
+    if (subStr.length < minSub) {
+      continue;
     }
+
+    arr.push({
+      lev: diff,
+      sub: subStr.length,
+      score: diff + subStr.length,
+      match: subStr,
+      content,
+      bookName,
+      chapter,
+      verse: verseNum,
+    });
   }
 
   arr.sort((a, b) => {

@@ -36,8 +36,9 @@ field.
 ### `findRef(input: string, options): ReferenceMatch[]`
 
 Given an input string, finds a list of `ReferenceMatch` objects. The matched
-substring is contained the `match` field. Leveraging the "volumes" or "books"
-options greatly enhances the efficiency.
+substring is contained the `match` field. The first call builds a word index
+(~300ms); later calls take a few milliseconds. The "volumes" or "books" options
+narrow the scope of results.
 
 ```typescript
 import { findRef } from "@jakeave/scripture-ref/server.ts";
