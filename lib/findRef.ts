@@ -4,6 +4,10 @@ import bookRefs from "../data/books.ts";
 import { formatRef } from "./formatRef.ts";
 import type { Book, BookName, ReferenceMatch } from "../types.ts";
 
+const booksByName = new Map(
+  Object.values(bookRefs).map((b) => [b.name, b as Book]),
+);
+
 interface Result {
   bookName: string;
   chapter: number;
@@ -122,10 +126,7 @@ export function findRef(
   const results = arr.slice(0, maxResults === null ? undefined : maxResults);
 
   return results.map(({ bookName, chapter, content, match, verse }) => {
-    // TODO: This could be done better now by looking at bookRefs object directly instead of looping
-    const book = Object.values(bookRefs).find(
-      (b) => b.name === bookName,
-    ) as Book;
+    const book = booksByName.get(bookName) as Book;
     const verses = [verse];
 
     const reference = formatRef({
@@ -142,25 +143,31 @@ export function findRef(
   });
 }
 
+// Two reusable rows instead of an (m+1)x(n+1) matrix per verse
+let prev = new Uint16Array(0);
+let cur = new Uint16Array(0);
+
 function longestCommonSubstring(input: string, verse: string) {
-  const m = input.length,
-    n = verse.length;
-  const dp = Array(m + 1)
-    .fill(null)
-    .map(() => Array(n + 1).fill(0));
-  let maxLength = 0,
-    endIndex = 0;
+  const m = input.length, n = verse.length;
+  if (prev.length < n + 1) {
+    prev = new Uint16Array(n + 1);
+    cur = new Uint16Array(n + 1);
+  } else {
+    prev.fill(0);
+  }
+  let maxLength = 0, endIndex = 0;
 
   for (let i = 1; i <= m; i++) {
+    const ch = input.charCodeAt(i - 1);
     for (let j = 1; j <= n; j++) {
-      if (input[i - 1] === verse[j - 1]) {
-        dp[i][j] = dp[i - 1][j - 1] + 1;
-        if (dp[i][j] > maxLength) {
-          maxLength = dp[i][j];
-          endIndex = i;
-        }
+      const len = ch === verse.charCodeAt(j - 1) ? prev[j - 1] + 1 : 0;
+      cur[j] = len;
+      if (len > maxLength) {
+        maxLength = len;
+        endIndex = i;
       }
     }
+    [prev, cur] = [cur, prev];
   }
   return input.substring(endIndex - maxLength, endIndex);
 }
